@@ -1,0 +1,19 @@
+{
+    "name": "composite/server-health",
+    "description": "Composite Solutions - Laravel server health checker.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Composite\\ServerHealth\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karácsony Márton",
+            "email": "41687291+KaracsonyMarton@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
