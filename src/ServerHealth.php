@@ -4,6 +4,8 @@ namespace Composite\ServerHealth;
 
 class ServerHealth
 {
+
+
     public function checkHealth()
     {
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
@@ -13,6 +15,10 @@ class ServerHealth
             $serverUptime = $this->getServerUptime();
             $memoryUsage = $this->getMemoryUsage();
             $diskSpace = $this->getDiskSpace();
+
+
+            return response($this->healthService->health());
+
             return [
                 "services" => $services,
                 "serverUptime" => $serverUptime,
@@ -78,8 +84,8 @@ class ServerHealth
         $free_mem = $free_mem[1] + $cache_mem[1];
 
         return [
-            "total_memory" => $total_mem,
-            "free_memory" => $free_mem
+            "total_memory" => $this->getSymbolByQuantity($total_mem),
+            "free_memory" => $this->getSymbolByQuantity($free_mem)
         ];
     }
 
@@ -105,8 +111,16 @@ class ServerHealth
         }
 
         return [
-            "disk_space" => $disk_space,
-            "disk_free" => $disk_free
+            "disk_space" => $this->getSymbolByQuantity($disk_space),
+            "disk_free" => $this->getSymbolByQuantity($disk_free)
         ];
+    }
+
+    private function getSymbolByQuantity($bytes)
+    {
+        $symbol = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
+        $exp = floor(log($bytes) / log(1024));
+
+        return sprintf('%.2f' . $symbol[$exp] . '', ($bytes / pow(1024, floor($exp))));
     }
 }

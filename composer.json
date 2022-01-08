@@ -5,7 +5,15 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Composite\\ServerHealth\\": "src/"
+            "Composite\\ServerHealth\\": "src/",
+            "PragmaRX\\Health\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Composite\\ServerHealth\\HealthServiceProvider"
+            ]
         }
     },
     "authors": [
@@ -15,5 +23,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "pragmarx/health": "dev-master"
+    }
 }
