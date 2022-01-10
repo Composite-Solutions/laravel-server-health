@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Composite\\ServerHealth\\": "src/",
+            "Composite\\ServerHealth\\": "src",
             "PragmaRX\\Health\\": "src/"
         }
     },

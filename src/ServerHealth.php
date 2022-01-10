@@ -16,9 +16,6 @@ class ServerHealth
             $memoryUsage = $this->getMemoryUsage();
             $diskSpace = $this->getDiskSpace();
 
-
-            return response($this->healthService->health());
-
             return [
                 "services" => $services,
                 "serverUptime" => $serverUptime,
