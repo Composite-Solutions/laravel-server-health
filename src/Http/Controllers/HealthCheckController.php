@@ -31,4 +31,17 @@ class HealthCheckController extends Health
             return $e->getMessage();
         }
     }
+
+    public function logs()
+    {
+        $content = Request::all();
+        if (isset($content['date'])) {
+            $logs =  (new LogReader(['date' => $content['date']]))->get();
+        } else {
+            $logs =  (new LogReader())->get();
+        }
+        return [
+            "logs" => $logs,
+        ];
+    }
 }
